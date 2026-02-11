@@ -9,9 +9,7 @@ import tifffile
 # Set your folder path
 folder_path = r"C:\Users\YourUsername\Documents\YourFolder" 
 
-print("=" * 80)
 print("COLLECTING IMAGE FILES")
-print("=" * 80)
 
 # Collect all TIF files
 tif_files = glob(f"{folder_path}/**/*.tif", recursive=True)
@@ -37,9 +35,7 @@ if png_files:
     for f in png_files[:3]:
         print(f"  - {Path(f).name}")
 
-print("\n" + "=" * 80)
 print("READING IMAGES")
-print("=" * 80)
 
 # Read and display first image if available
 all_image_files = tif_files + png_files
@@ -89,9 +85,7 @@ if all_image_files:
         else:
             print(f"OpenCV couldn't load the image")
 
-print("\n" + "=" * 80)
 print("READING ALL FILES (DETAILED)")
-print("=" * 80)
 
 file_count = 0
 
@@ -114,11 +108,9 @@ for item in Path(folder_path).rglob('*'):
                 print(f"  Columns: {list(df.columns)}")
                 print(f"\n  Preview:")
                 print(df.head(3))  # Show first 3 rows
-                print("-" * 60)
                 
             except Exception as e:
                 print(f"\nFile #{file_count}: {item.name} - Could not read: {e}")
-                print("-" * 60)
         
         # Handle TIF files
         elif item.suffix.lower() == '.tif':
@@ -139,11 +131,9 @@ for item in Path(folder_path).rglob('*'):
                     print(f"  File size: {item.stat().st_size / 1024:.2f} KB")
                 else:
                     print(f"  Could not load image data")
-                print("-" * 60)
                 
             except Exception as e:
                 print(f"\nFile #{file_count}: {item.name} - Could not read: {e}")
-                print("-" * 60)
         
         # Handle PNG files
         elif item.suffix.lower() == '.png':
@@ -160,11 +150,9 @@ for item in Path(folder_path).rglob('*'):
                     print(f"  File size: {item.stat().st_size / 1024:.2f} KB")
                 else:
                     print(f"  Could not load image data")
-                print("-" * 60)
                 
             except Exception as e:
                 print(f"\nFile #{file_count}: {item.name} - Could not read: {e}")
-                print("-" * 60)
         
         # Handle regular text files
         else:
@@ -177,13 +165,10 @@ for item in Path(folder_path).rglob('*'):
                     print(f"\nFile #{file_count}: {item.name}")
                     print(f"  Size: {len(content)} characters")
                     print(f"  First 100 chars: {content[:100]}")
-                    print("-" * 60)
                     
             except Exception as e:
                 # Handle errors (binary files, permission issues, etc.)
                 print(f"\nFile #{file_count}: {item.name} - Could not read: {e}")
                 print("-" * 60)
 
-print(f"\n{'=' * 80}")
 print(f"FINISHED! Read {file_count} files total.")
-print(f"{'=' * 80}")
